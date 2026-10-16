@@ -40,23 +40,15 @@ function calculateBonusByProfit(index, total, seller) {
  */
 function analyzeSalesData(data, options) {
     // @TODO: Проверка входных данных
-    if (
-    !data ||
-    !Array.isArray(data.customers) ||
-    !Array.isArray(data.products) ||
-    !Array.isArray(data.sellers) ||
-    !Array.isArray(data.purchase_records)
+    if (!data
+        || !Array.isArray(data.sellers)
+        || !Array.isArray(data.products)
+        || !Array.isArray(data.purchase_records)
+        || data.sellers.length === 0
+        || data.products.length === 0
+        || data.purchase_records.length === 0
     ) {
-    throw new Error("Некорректный формат данных");
-    }
-
-  if (
-    data.sellers.length === 0 ||
-    data.products.length === 0 ||
-    data.customers.length === 0 ||
-    data.purchase_records.length === 0
-    ) {
-    throw new Error("Переданные коллекции пустые");
+        throw new Error('Некорректные входные данные');
     }
 
     // @TODO: Проверка наличия опций
